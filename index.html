@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alquiler de Terreno para Pastoreo - 3 Meses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .intro h2 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .option-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #27ae60;
+        }
+
+        .option-card.destacado {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-color: #e17055;
+        }
+
+        .option-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .option-area {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .price {
+            font-size: 2.5em;
+            color: #27ae60;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .price-period {
+            font-size: 0.4em;
+            color: #7f8c8d;
+            display: block;
+        }
+
+        .features {
+            list-style: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .map-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .map-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+
+        .map-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-svg {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: white;
+            color: #25D366;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price {
+                font-size: 2em;
+            }
+
+            .map-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .option-card {
+                padding: 20px;
+            }
+
+            .whatsapp-btn {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌾 Alquiler de Terreno para Pastoreo</h1>
+            <p>Terreno apto para pastoreo de ganado</p>
+            <div class="badge">Periodo: 3 Meses</div>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>Opciones de Alquiler Disponibles</h2>
+                <p>Seleccione la opción que mejor se adapte a sus necesidades de pastoreo</p>
+            </div>
+
+            <div class="options-grid">
+                <div class="option-card destacado">
+                    <div class="option-title">🏆 Opción 1: Terreno Completo</div>
+                    <div class="option-area">Área Total: 15.36 hectáreas</div>
+                    <div class="price">
+                        S/ 2,000
+                        <span class="price-period">por 3 meses</span>
+                    </div>
+                    <ul class="features">
+                        <li>Incluye las 3 parcelas</li>
+                        <li>Máxima capacidad de ganado</li>
+                        <li>Precio conversable</li>
+                    </ul>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">📍 Opción 2: Parcela 001</div>
+                    <div class="option-area">Área: 6.87 hectáreas</div>
+                    <div class="price">
+                        S/ 1,000
+                        <span class="price-period">por 3 meses</span>
+                    </div>
+                    <ul class="features">
+                        <li>Zona este del terreno</li>
+                        <li>Fácil acceso</li>
+                        <li>Cerca perimetral parcial</li>
+                    </ul>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">📍 Opción 3: Parcela 002</div>
+                    <div class="option-area">Área: 3.17 hectáreas</div>
+                    <div class="price">
+                        S/ 500
+                        <span class="price-period">por 3 meses</span>
+                    </div>
+                    <ul class="features">
+                        <li>Zona central del terreno</li>
+                        <li>Cerca perimetral</li>
+                    </ul>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-title">📍 Opción 4: Parcela 003</div>
+                    <div class="option-area">Área: 5.32 hectáreas</div>
+                    <div class="price">
+                        S/ 600
+                        <span class="price-period">por 3 meses</span>
+                    </div>
+                    <ul class="features">
+                        <li>Zona oeste del terreno</li>
+                        <li>Pasto poco abundante</li>
+                        <li>Cerca perimetral</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <h2 class="map-title">Distribución del Terreno</h2>
+                <div class="map-container">
+                    <svg class="map-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Parcela 001 -->
+                        <rect x="50" y="50" width="500" height="100" fill="#81C784" stroke="#388E3C" stroke-width="3"/>
+                        <text x="300" y="90" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">PARCELA 001</text>
+                        <text x="300" y="115" text-anchor="middle" font-size="16" fill="#2E7D32">6.87 hectáreas</text>
+                        <text x="300" y="135" text-anchor="middle" font-size="14" fill="#1B5E20">S/ 1,000</text>
+                        
+                        <!-- Parcela 002 -->
+                        <rect x="50" y="160" width="500" height="85" fill="#AED581" stroke="#689F38" stroke-width="3"/>
+                        <text x="300" y="195" text-anchor="middle" font-size="20" font-weight="bold" fill="#33691E">PARCELA 002</text>
+                        <text x="300" y="218" text-anchor="middle" font-size="16" fill="#558B2F">3.17 hectáreas</text>
+                        <text x="300" y="235" text-anchor="middle" font-size="14" fill="#33691E">S/ 500</text>
+                        
+                        <!-- Parcela 003 -->
+                        <rect x="50" y="255" width="500" height="70" fill="#C5E1A5" stroke="#7CB342" stroke-width="3"/>
+                        <text x="300" y="285" text-anchor="middle" font-size="20" font-weight="bold" fill="#33691E">PARCELA 003</text>
+                        <text x="300" y="305" text-anchor="middle" font-size="16" fill="#558B2F">5.32 hectáreas</text>
+                        <text x="300" y="320" text-anchor="middle" font-size="14" fill="#33691E">S/ 600</text>
+                        
+                        <!-- Indicadores -->
+                        <text x="300" y="360" text-anchor="middle" font-size="18" font-weight="bold" fill="#2C3E50">TOTAL: 15.36 hectáreas</text>
+                        <text x="300" y="380" text-anchor="middle" font-size="14" fill="#7F8C8D">Terreno Completo: S/ 2,000 (3 meses)</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>¿Interesado en Alquilar?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 10px;">Contáctenos ahora mismo por WhatsApp</p>
+            <p>Respuesta rápida - Atención personalizada</p>
+            <a href="https://wa.me/51973874960?text=Hola,%20estoy%20interesado%20en%20alquilar%20un%20terreno%20para%20pastoreo" class="whatsapp-btn" target="_blank">
+                <span class="whatsapp-icon">📱</span>
+                Contactar por WhatsApp
+            </a>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                También puede llamarnos: +51 973 874 960
+            </p>
+        </div>
+    </div>
+</body>
+</html>
