@@ -84,6 +84,9 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 3px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .option-card:hover {
@@ -141,6 +144,112 @@
             color: #27ae60;
             font-weight: bold;
             margin-right: 8px;
+        }
+
+        .view-photo-btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .view-photo-btn:hover {
+            background: #229954;
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); }
+            to { transform: scale(1); }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .modal-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .modal-info h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .modal-info p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            background: rgba(231, 76, 60, 0.8);
+            transform: rotate(90deg);
         }
 
         .map-section {
@@ -207,6 +316,18 @@
             margin-right: 10px;
         }
 
+        .image-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(39, 174, 96, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8em;
@@ -230,6 +351,17 @@
 
             .map-section {
                 padding: 30px 20px;
+            }
+
+            .modal-content {
+                max-width: 95%;
+            }
+
+            .close-modal {
+                top: -35px;
+                width: 40px;
+                height: 40px;
+                font-size: 30px;
             }
         }
 
@@ -262,19 +394,19 @@
         <div class="header">
             <h1>🌾 Alquiler de Terreno para Pastoreo</h1>
             <p>Terreno apto para pastoreo de ganado</p>
-            <div class="badge">Periodo: 3 Meses</div>
+            <div class="badge">Periodo de Alquiler: 3 Meses</div>
         </div>
 
         <div class="content">
             <div class="intro">
                 <h2>Opciones de Alquiler Disponibles</h2>
-                <p>Seleccione la opción que mejor se adapte a sus necesidades de pastoreo</p>
+                <p>Haga clic en "Ver Fotos" para visualizar cada terreno</p>
             </div>
 
             <div class="options-grid">
-                <div class="option-card destacado">
+                <div class="option-card destacado" onclick="openModal('completo')">
                     <div class="option-title">🏆 Opción 1: Terreno Completo</div>
-                    <div class="option-area">Área Total: 15.36 hectáreas</div>
+                    <div class="option-area">Área Total: 15.18 hectáreas</div>
                     <div class="price">
                         S/ 2,000
                         <span class="price-period">por 3 meses</span>
@@ -284,9 +416,12 @@
                         <li>Máxima capacidad de ganado</li>
                         <li>Precio conversable</li>
                     </ul>
+                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('completo')">
+                        📸 Ver Fotos del Terreno
+                    </button>
                 </div>
 
-                <div class="option-card">
+                <div class="option-card" onclick="openModal('parcela1')">
                     <div class="option-title">📍 Opción 2: Parcela 001</div>
                     <div class="option-area">Área: 6.87 hectáreas</div>
                     <div class="price">
@@ -298,9 +433,12 @@
                         <li>Fácil acceso</li>
                         <li>Cerca perimetral parcial</li>
                     </ul>
+                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela1')">
+                        📸 Ver Fotos del Terreno
+                    </button>
                 </div>
 
-                <div class="option-card">
+                <div class="option-card" onclick="openModal('parcela2')">
                     <div class="option-title">📍 Opción 3: Parcela 002</div>
                     <div class="option-area">Área: 3.17 hectáreas</div>
                     <div class="price">
@@ -311,13 +449,16 @@
                         <li>Zona central del terreno</li>
                         <li>Cerca perimetral</li>
                     </ul>
+                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela2')">
+                        📸 Ver Fotos del Terreno
+                    </button>
                 </div>
 
-                <div class="option-card">
+                <div class="option-card" onclick="openModal('parcela3')">
                     <div class="option-title">📍 Opción 4: Parcela 003</div>
-                    <div class="option-area">Área: 5.32 hectáreas</div>
+                    <div class="option-area">Área: 5.14 hectáreas</div>
                     <div class="price">
-                        S/ 600
+                        S/ 500
                         <span class="price-period">por 3 meses</span>
                     </div>
                     <ul class="features">
@@ -325,6 +466,9 @@
                         <li>Pasto poco abundante</li>
                         <li>Cerca perimetral</li>
                     </ul>
+                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela3')">
+                        📸 Ver Fotos del Terreno
+                    </button>
                 </div>
             </div>
 
@@ -332,26 +476,22 @@
                 <h2 class="map-title">Distribución del Terreno</h2>
                 <div class="map-container">
                     <svg class="map-svg" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Parcela 001 -->
                         <rect x="50" y="50" width="500" height="100" fill="#81C784" stroke="#388E3C" stroke-width="3"/>
                         <text x="300" y="90" text-anchor="middle" font-size="20" font-weight="bold" fill="#1B5E20">PARCELA 001</text>
                         <text x="300" y="115" text-anchor="middle" font-size="16" fill="#2E7D32">6.87 hectáreas</text>
                         <text x="300" y="135" text-anchor="middle" font-size="14" fill="#1B5E20">S/ 1,000</text>
                         
-                        <!-- Parcela 002 -->
                         <rect x="50" y="160" width="500" height="85" fill="#AED581" stroke="#689F38" stroke-width="3"/>
                         <text x="300" y="195" text-anchor="middle" font-size="20" font-weight="bold" fill="#33691E">PARCELA 002</text>
                         <text x="300" y="218" text-anchor="middle" font-size="16" fill="#558B2F">3.17 hectáreas</text>
                         <text x="300" y="235" text-anchor="middle" font-size="14" fill="#33691E">S/ 500</text>
                         
-                        <!-- Parcela 003 -->
                         <rect x="50" y="255" width="500" height="70" fill="#C5E1A5" stroke="#7CB342" stroke-width="3"/>
                         <text x="300" y="285" text-anchor="middle" font-size="20" font-weight="bold" fill="#33691E">PARCELA 003</text>
-                        <text x="300" y="305" text-anchor="middle" font-size="16" fill="#558B2F">5.32 hectáreas</text>
-                        <text x="300" y="320" text-anchor="middle" font-size="14" fill="#33691E">S/ 600</text>
+                        <text x="300" y="305" text-anchor="middle" font-size="16" fill="#558B2F">5.14 hectáreas</text>
+                        <text x="300" y="320" text-anchor="middle" font-size="14" fill="#33691E">S/ 500</text>
                         
-                        <!-- Indicadores -->
-                        <text x="300" y="360" text-anchor="middle" font-size="18" font-weight="bold" fill="#2C3E50">TOTAL: 15.36 hectáreas</text>
+                        <text x="300" y="360" text-anchor="middle" font-size="18" font-weight="bold" fill="#2C3E50">TOTAL: 15.18 hectáreas</text>
                         <text x="300" y="380" text-anchor="middle" font-size="14" fill="#7F8C8D">Terreno Completo: S/ 2,000 (3 meses)</text>
                     </svg>
                 </div>
@@ -371,5 +511,80 @@
             </p>
         </div>
     </div>
+
+    <!-- Modales para cada opción -->
+    <div id="modal-completo" class="modal" onclick="closeModal('completo')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('completo')">&times;</span>
+            <img src="parcelatotal.jpg" alt="Terreno Completo" class="modal-image">
+            <div class="modal-info">
+                <h3>🏆 Terreno Completo - 15.18 hectáreas</h3>
+                <p><strong>Precio:</strong> S/ 2,000 por 3 meses</p>
+                <p><strong>Incluye:</strong> Las 3 parcelas completas</p>
+                <p><strong>Ideal para:</strong> Ganado grande, máxima capacidad</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela1" class="modal" onclick="closeModal('parcela1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela1')">&times;</span>
+            <img src="parcela001.jpg" alt="Parcela 001" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 001 - 6.87 hectáreas</h3>
+                <p><strong>Precio:</strong> S/ 1,000 por 3 meses</p>
+                <p><strong>Ubicación:</strong> Zona este del terreno</p>
+                <p><strong>Características:</strong> Fácil acceso, cerca perimetral parcial</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela2" class="modal" onclick="closeModal('parcela2')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela2')">&times;</span>
+            <img src="parcela002.jpg" alt="Parcela 002" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 002 - 3.17 hectáreas</h3>
+                <p><strong>Precio:</strong> S/ 500 por 3 meses</p>
+                <p><strong>Ubicación:</strong> Zona central del terreno</p>
+                <p><strong>Características:</strong> Cerca perimetral completa</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela3" class="modal" onclick="closeModal('parcela3')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela3')">&times;</span>
+            <img src="parcela003.jpg" alt="Parcela 003" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 003 - 5.14 hectáreas</h3>
+                <p><strong>Precio:</strong> S/ 500 por 3 meses</p>
+                <p><strong>Ubicación:</strong> Zona oeste del terreno</p>
+                <p><strong>Características:</strong> Pasto poco abundante, cerca perimetral</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById('modal-' + id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById('modal-' + id).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
