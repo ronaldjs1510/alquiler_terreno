@@ -17,13 +17,13 @@
         <div class="content">
             <div class="intro">
                 <h2>Opciones de Alquiler Disponibles</h2>
-                <p>Haga clic en "Ver Fotos" para visualizar cada terreno</p>
+                <p>Haga clic en los botones para ver fotos panorámicas o el mapa de cada terreno</p>
             </div>
 
             <div class="options-grid">
-                <div class="option-card destacado" onclick="openModal('completo')">
+                <div class="option-card destacado">
                     <div class="option-title">🏆 Opción 1: Terreno Completo</div>
-                    <div class="option-area">Área Total: 15.18 hectáreas</div>
+                    <div class="option-area">Área Total: aproximadamente 15.18 hectáreas</div>
                     <div class="price">
                         S/ 2,000
                         <span class="price-period">por 3 meses</span>
@@ -33,14 +33,19 @@
                         <li>Máxima capacidad de ganado</li>
                         <li>Precio conversable</li>
                     </ul>
-                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('completo')">
-                        📸 Ver Fotos del Terreno
-                    </button>
+                    <div class="button-group">
+                        <button class="view-photo-btn" onclick="openModal('completo-foto')">
+                            📸 Vista Panorámica
+                        </button>
+                        <button class="view-map-btn" onclick="openModal('completo-mapa')">
+                            🗺️ Ver Mapa
+                        </button>
+                    </div>
                 </div>
 
-                <div class="option-card" onclick="openModal('parcela1')">
+                <div class="option-card">
                     <div class="option-title">📍 Opción 2: Parcela 001</div>
-                    <div class="option-area">Área: 6.87 hectáreas</div>
+                    <div class="option-area">Área: aproximadamente 6.87 hectáreas</div>
                     <div class="price">
                         S/ 1,000
                         <span class="price-period">por 3 meses</span>
@@ -50,14 +55,19 @@
                         <li>Fácil acceso</li>
                         <li>Cerca perimetral parcial</li>
                     </ul>
-                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela1')">
-                        📸 Ver Fotos del Terreno
-                    </button>
+                    <div class="button-group">
+                        <button class="view-photo-btn" onclick="openModal('parcela1-foto')">
+                            📸 Vista Panorámica
+                        </button>
+                        <button class="view-map-btn" onclick="openModal('parcela1-mapa')">
+                            🗺️ Ver Mapa
+                        </button>
+                    </div>
                 </div>
 
-                <div class="option-card" onclick="openModal('parcela2')">
+                <div class="option-card">
                     <div class="option-title">📍 Opción 3: Parcela 002</div>
-                    <div class="option-area">Área: 3.17 hectáreas</div>
+                    <div class="option-area">Área: aproximadamente 3.17 hectáreas</div>
                     <div class="price">
                         S/ 500
                         <span class="price-period">por 3 meses</span>
@@ -66,14 +76,19 @@
                         <li>Zona central del terreno</li>
                         <li>Cerca perimetral</li>
                     </ul>
-                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela2')">
-                        📸 Ver Fotos del Terreno
-                    </button>
+                    <div class="button-group">
+                        <button class="view-photo-btn" onclick="openModal('parcela2-foto')">
+                            📸 Vista Panorámica
+                        </button>
+                        <button class="view-map-btn" onclick="openModal('parcela2-mapa')">
+                            🗺️ Ver Mapa
+                        </button>
+                    </div>
                 </div>
 
-                <div class="option-card" onclick="openModal('parcela3')">
+                <div class="option-card">
                     <div class="option-title">📍 Opción 4: Parcela 003</div>
-                    <div class="option-area">Área: 5.14 hectáreas</div>
+                    <div class="option-area">Área: aproximadamente 5.14 hectáreas</div>
                     <div class="price">
                         S/ 500
                         <span class="price-period">por 3 meses</span>
@@ -83,9 +98,14 @@
                         <li>Pasto poco abundante</li>
                         <li>Cerca perimetral</li>
                     </ul>
-                    <button class="view-photo-btn" onclick="event.stopPropagation(); openModal('parcela3')">
-                        📸 Ver Fotos del Terreno
-                    </button>
+                    <div class="button-group">
+                        <button class="view-photo-btn" onclick="openModal('parcela3-foto')">
+                            📸 Vista Panorámica
+                        </button>
+                        <button class="view-map-btn" onclick="openModal('parcela3-mapa')">
+                            🗺️ Ver Mapa
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -129,55 +149,107 @@
         </div>
     </div>
 
-    <!-- Modales para cada opción -->
-    <div id="modal-completo" class="modal" onclick="closeModal('completo')">
+    <!-- Modales para FOTOS panorámicas -->
+    <div id="modal-completo-foto" class="modal" onclick="closeModal('completo-foto')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="closeModal('completo')">&times;</span>
-            <img src="parcelatotal.jpg" alt="Terreno Completo" class="modal-image">
+            <span class="close-modal" onclick="closeModal('completo-foto')">&times;</span>
+            <img src="parcelatotal.jpg" alt="Terreno Completo - Vista Panorámica" class="modal-image">
             <div class="modal-info">
-                <h3>🏆 Terreno Completo - 15.18 hectáreas</h3>
+                <h3>🏆 Terreno Completo - Vista Panorámica</h3>
+                <p><strong>Área:</strong> aproximadamente 15.18 hectáreas</p>
                 <p><strong>Precio:</strong> S/ 2,000 por 3 meses</p>
                 <p><strong>Incluye:</strong> Las 3 parcelas completas</p>
-                <p><strong>Ideal para:</strong> Ganado grande, máxima capacidad</p>
             </div>
         </div>
     </div>
 
-    <div id="modal-parcela1" class="modal" onclick="closeModal('parcela1')">
+    <div id="modal-completo-mapa" class="modal" onclick="closeModal('completo-mapa')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="closeModal('parcela1')">&times;</span>
-            <img src="parcela001.jpg" alt="Parcela 001" class="modal-image">
+            <span class="close-modal" onclick="closeModal('completo-mapa')">&times;</span>
+            <img src="mapa_completo.jpg" alt="Terreno Completo - Mapa Geométrico" class="modal-image">
             <div class="modal-info">
-                <h3>📍 Parcela 001 - 6.87 hectáreas</h3>
+                <h3>🗺️ Terreno Completo - Mapa y Geometría</h3>
+                <p><strong>Área Total:</strong> aproximadamente 15.18 hectáreas</p>
+                <p><strong>Distribución:</strong> 3 parcelas continuas</p>
+                <p><strong>Nota:</strong> Mapa con medidas y límites del terreno</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela1-foto" class="modal" onclick="closeModal('parcela1-foto')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela1-foto')">&times;</span>
+            <img src="parcela001.jpg" alt="Parcela 001 - Vista Panorámica" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 001 - Vista Panorámica</h3>
+                <p><strong>Área:</strong> aproximadamente 6.87 hectáreas</p>
                 <p><strong>Precio:</strong> S/ 1,000 por 3 meses</p>
                 <p><strong>Ubicación:</strong> Zona este del terreno</p>
-                <p><strong>Características:</strong> Fácil acceso, cerca perimetral parcial</p>
             </div>
         </div>
     </div>
 
-    <div id="modal-parcela2" class="modal" onclick="closeModal('parcela2')">
+    <div id="modal-parcela1-mapa" class="modal" onclick="closeModal('parcela1-mapa')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="closeModal('parcela2')">&times;</span>
-            <img src="parcela002.jpg" alt="Parcela 002" class="modal-image">
+            <span class="close-modal" onclick="closeModal('parcela1-mapa')">&times;</span>
+            <img src="mapa_parcela001.jpg" alt="Parcela 001 - Mapa Geométrico" class="modal-image">
             <div class="modal-info">
-                <h3>📍 Parcela 002 - 3.17 hectáreas</h3>
+                <h3>🗺️ Parcela 001 - Mapa y Geometría</h3>
+                <p><strong>Área:</strong> aproximadamente 6.87 hectáreas</p>
+                <p><strong>Características:</strong> Fácil acceso, cerca perimetral parcial</p>
+                <p><strong>Nota:</strong> Mapa con medidas exactas y linderos</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela2-foto" class="modal" onclick="closeModal('parcela2-foto')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela2-foto')">&times;</span>
+            <img src="parcela002.jpg" alt="Parcela 002 - Vista Panorámica" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 002 - Vista Panorámica</h3>
+                <p><strong>Área:</strong> aproximadamente 3.17 hectáreas</p>
                 <p><strong>Precio:</strong> S/ 500 por 3 meses</p>
                 <p><strong>Ubicación:</strong> Zona central del terreno</p>
-                <p><strong>Características:</strong> Cerca perimetral completa</p>
             </div>
         </div>
     </div>
 
-    <div id="modal-parcela3" class="modal" onclick="closeModal('parcela3')">
+    <div id="modal-parcela2-mapa" class="modal" onclick="closeModal('parcela2-mapa')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-modal" onclick="closeModal('parcela3')">&times;</span>
-            <img src="parcela003.jpg" alt="Parcela 003" class="modal-image">
+            <span class="close-modal" onclick="closeModal('parcela2-mapa')">&times;</span>
+            <img src="mapa_parcela002.jpg" alt="Parcela 002 - Mapa Geométrico" class="modal-image">
             <div class="modal-info">
-                <h3>📍 Parcela 003 - 5.14 hectáreas</h3>
+                <h3>🗺️ Parcela 002 - Mapa y Geometría</h3>
+                <p><strong>Área:</strong> aproximadamente 3.17 hectáreas</p>
+                <p><strong>Características:</strong> Cerca perimetral completa</p>
+                <p><strong>Nota:</strong> Mapa con dimensiones y límites</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela3-foto" class="modal" onclick="closeModal('parcela3-foto')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela3-foto')">&times;</span>
+            <img src="parcela003.jpg" alt="Parcela 003 - Vista Panorámica" class="modal-image">
+            <div class="modal-info">
+                <h3>📍 Parcela 003 - Vista Panorámica</h3>
+                <p><strong>Área:</strong> aproximadamente 5.14 hectáreas</p>
                 <p><strong>Precio:</strong> S/ 500 por 3 meses</p>
                 <p><strong>Ubicación:</strong> Zona oeste del terreno</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-parcela3-mapa" class="modal" onclick="closeModal('parcela3-mapa')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal('parcela3-mapa')">&times;</span>
+            <img src="mapa_parcela003.jpg" alt="Parcela 003 - Mapa Geométrico" class="modal-image">
+            <div class="modal-info">
+                <h3>🗺️ Parcela 003 - Mapa y Geometría</h3>
+                <p><strong>Área:</strong> aproximadamente 5.14 hectáreas</p>
                 <p><strong>Características:</strong> Pasto poco abundante, cerca perimetral</p>
+                <p><strong>Nota:</strong> Mapa con medidas y extensión del terreno</p>
             </div>
         </div>
     </div>
